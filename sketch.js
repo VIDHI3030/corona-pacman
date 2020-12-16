@@ -1,26 +1,27 @@
-var germ1,germ2,germ3,powerup1,powerup2,powerup3,Pacman,life1,life2,life3;
+var germ1,germ2,germ3,powerup1,powerup2,powerup3,powerup4,powerup5,Pacman,life1,life2,life3;
 var germImage,hsimage,humanimage,mask,person,life;
 var computerscore,playerscore,gameState;
 var wall1,wall2,wall3,wall4,wall5,wall6,wall7,wall8,wall9,wall10,wall11,wall12,wall13,wall14,wall15,wall16,wall16,wall17;
 function preload(){
-  germImage=loadImage("images/germ.jpg");
+  germImage=loadImage("images/germ.png");
   hsImage=loadImage("images/handsanitizer.png");
   humanImage=loadImage("images/human walking.png");
-  mask=loadImage("images/mask.jpg");
-  person=loadImage("images/person.jpg");
+  mask=loadImage("images/mask.png");
+  person=loadImage("images/human.png");
   life=loadImage("images/life.png");
 }
 
 function setup(){
+  createCanvas(480,400);
 germ1 = createSprite(100,88,10,10);
 germ1.addImage(germImage);
 germ1.scale = 0.2;
 
- germ2 = createSprite(300,310,10,10);
+ germ2 = createSprite(300,314,10,10);
 germ2.addImage(germImage);
 germ2.scale = 0.2;
 
-germ3 = createSprite(305,100,10,10);
+germ3 = createSprite(350,100,10,10);
 germ3.addImage(germImage);
 germ3.scale = 0.2;
 
@@ -38,9 +39,19 @@ powerup1.scale = 0.2;
 powerup2.addImage(hsImage);
 powerup2.scale = 0.2;
 
-  powerup3 = createSprite(370,310,10,10);
+  powerup3 = createSprite(430,374,10,10);
 powerup3.addImage(mask);
 powerup3.scale = 0.2;
+
+powerup4 = createSprite(430,200,10,10);
+powerup4.addImage(hsImage);
+powerup4.scale = 0.2;
+
+powerup5 = createSprite(200,374,10,10);
+powerup5.addImage(mask);
+powerup5.scale = 0.2;
+
+
 
 life1 = createSprite(20,30);
 life1.addImage(life);
@@ -58,58 +69,58 @@ life3.scale = 0.05;
 destination.shapeColor = "lightgreen";
 destination.visible = false;
 
- wall1 = createSprite(275,370,10,60);
+ wall1 = createSprite(312,370,10,60);
 wall1.shapeColor = "darkblue";
 
 wall2 = createSprite(30,345,80,10);
 wall2.shapeColor = "darkblue";
 
- wall3 = createSprite(200,345,155,10);
+ wall3 = createSprite(230,345,157,10);
 wall3.shapeColor = "darkblue";
 
- wall4 = createSprite(370,345,80,10);
+ wall4 = createSprite(430,345,100,10);
 wall4.shapeColor = "darkblue";
 
- wall5 = createSprite(200,280,157,10);
+ wall5 = createSprite(234,280,166,10);
 wall5.shapeColor = "darkblue";
 
- wall6 = createSprite(146,120,48,10);
+ wall6 = createSprite(174,120,48,10);
 wall6.shapeColor = "darkblue";
 
- wall7 = createSprite(254,120,48,10);
+ wall7 = createSprite(294,120,48,10);
 wall7.shapeColor = "darkblue";
 
-wall8 = createSprite(127,146,10,48);
+wall8 = createSprite(155,146,10,48);
 wall8.shapeColor = "darkblue";
 
-wall9 = createSprite(127,254,10,48);
+wall9 = createSprite(155,254,10,48);
 wall9.shapeColor = "darkblue";
 
- wall10 = createSprite(274,146,10,48);
+ wall10 = createSprite(314,146,10,48);
 wall10.shapeColor = "darkblue";
 
- wall11 = createSprite(274,254,10,48);
+ wall11 = createSprite(314,254,10,48);
 wall11.shapeColor = "darkblue";
 
-wall12 = createSprite(370,280,80,10);
+wall12 = createSprite(430,280,100,10);
 wall12.shapeColor = "darkblue";
 
-wall13 = createSprite(335,200,10,157);
+wall13 = createSprite(385,200,10,157);
 wall13.shapeColor = "darkblue";
 
 wall14 = createSprite(65,200,10,157);
 wall14.shapeColor = "darkblue";
 
-wall15 = createSprite(30,120,80,10);
+wall15 = createSprite(30,120,90,10);
 wall15.shapeColor = "darkblue";
 
-wall16 = createSprite(200,56,157,10);
+wall16 = createSprite(230,56,157,10);
 wall16.shapeColor = "darkblue";
 
- wall17 = createSprite(335,32,10,60);
+ wall17 = createSprite(385,32,10,60);
 wall17.shapeColor = "darkblue";
 
-Pacman = createSprite(200,150,10,10);
+Pacman = createSprite(230,150,10,10);
 Pacman.addImage(person);
 Pacman.scale = 0.25;
 
@@ -126,7 +137,7 @@ textSize(30);}
 function draw() {
 background("black");
 drawSprites();
-createEdgeSprites();
+edges=createEdgeSprites();
 
 if (gameState === "serve") {
  fill("red");
@@ -191,13 +202,13 @@ if(keyDown("up") && gameState === "play") {
 }
 
 if(Pacman.isTouching(germ1) || Pacman.isTouching(germ2) || Pacman.isTouching(germ3) ) {
-  playSound("sound://category_alerts/vibrant_game_life_lost_1.mp3");
+  //playSound("sound://category_alerts/vibrant_game_life_lost_1.mp3");
   serve();
  computerscore = computerscore+1; 
 }
 
 if(Pacman.isTouching(powerup1) || Pacman.isTouching(powerup2) || Pacman.isTouching(powerup3)) {
-  playSound("sound://category_digital/coin_1.mp3");
+  //playSound("sound://category_digital/coin_1.mp3");
   playerscore = playerscore+1;
   if(Pacman.isTouching(powerup1)) {
    powerup1.visible = false;
@@ -236,7 +247,7 @@ if(gameState === "lose") {
  text("Press R to restart",85,230);
 }
 
-if(powerup1.visible === false && powerup2.visible === false && powerup3.visible === false) {
+if(powerup1.visible === false && powerup2.visible === false && powerup3.visible === false && powerup4.visible === false && powerup5.visible === false ) {
 destination.visible = true;
 }
 
@@ -245,7 +256,6 @@ if(destination.visible === true && Pacman.isTouching(destination)) {
 }
 
 if(gameState === "win") {
-playSound("sound://category_bell/short_bell_alert.mp3", false);
 invisible();
 serve();
 germ1.setVelocity(0,0);
@@ -300,4 +310,6 @@ life3.visible = false;
 powerup1.visible = false;
 powerup2.visible = false;
 powerup3.visible = false;
+powerup4.visible = false;
+powerup5.visible = false;
 }
