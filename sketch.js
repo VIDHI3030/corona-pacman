@@ -1,4 +1,4 @@
-var germ1,germ2,germ3,powerup1,powerup2,powerup3,powerup4,powerup5,Pacman,life1,life2,life3;
+var germ1,germ2,germ3,powerup1,powerup2,powerup3,powerup4,powerup5,powerup6,powerup7,Pacman,life1,life2,life3;
 var germImage,hsimage,humanimage,mask,person,life;
 var computerscore,playerscore,gameState;
 var wall1,wall2,wall3,wall4,wall5,wall6,wall7,wall8,wall9,wall10,wall11,wall12,wall13,wall14,wall15,wall16,wall16,wall17;
@@ -49,6 +49,14 @@ powerup4.scale = 0.2;
 
 powerup5 = createSprite(200,374,10,10);
 powerup5.addImage(mask);
+powerup5.scale = 0.2;
+
+powerup6 = createSprite(36,366,10,10);
+powerup6.addImage(mask);
+powerup6.scale = 0.2;
+
+powerup5 = createSprite(413,23,10,10);
+powerup5.addImage(hsImage);
 powerup5.scale = 0.2;
 
 
@@ -207,7 +215,7 @@ if(Pacman.isTouching(germ1) || Pacman.isTouching(germ2) || Pacman.isTouching(ger
  computerscore = computerscore+1; 
 }
 
-if(Pacman.isTouching(powerup1) || Pacman.isTouching(powerup2) || Pacman.isTouching(powerup3)) {
+if(Pacman.isTouching(powerup1) || Pacman.isTouching(powerup2) || Pacman.isTouching(powerup3) || Pacman.isTouching(powerup4) || Pacman.isTouching(powerup6)|| Pacman.isTouching(powerup7)) {
   //playSound("sound://category_digital/coin_1.mp3");
   playerscore = playerscore+1;
   if(Pacman.isTouching(powerup1)) {
@@ -219,6 +227,18 @@ if(Pacman.isTouching(powerup1) || Pacman.isTouching(powerup2) || Pacman.isTouchi
   if(Pacman.isTouching(powerup3)) {
    powerup3.visible = false;
   }
+  if(Pacman.isTouching(powerup4)) {
+    powerup3.visible = false;
+   }
+   if(Pacman.isTouching(powerup5)) {
+    powerup3.visible = false;
+   }
+   if(Pacman.isTouching(powerup6)) {
+    powerup3.visible = false;
+   }
+   if(Pacman.isTouching(powerup7)) {
+    powerup3.visible = false;
+   }
 }
 
 if(computerscore === 1) {
@@ -292,6 +312,10 @@ life1.visible = true;
  powerup1.visible = true;
  powerup2.visible = true;
  powerup3.visible = true;
+ powerup4.visible = true;
+ powerup5.visible = true;
+ powerup6.visible = true;
+ powerup7.visible = true;
 }
 
 function go() {
@@ -312,4 +336,6 @@ powerup2.visible = false;
 powerup3.visible = false;
 powerup4.visible = false;
 powerup5.visible = false;
+powerup6.visible = false;
+powerup7.visible = false;
 }
