@@ -149,10 +149,10 @@ edges=createEdgeSprites();
 
 if (gameState === "serve") {
  fill("red");
- text("Press space to continue",40,210);
+ text("Press enter to continue",40,210);
 } 
 
-if(keyDown("space") && gameState === "serve") {
+if(keyDown("enter") && gameState === "serve") {
  gameState = "directions";
 }
 
